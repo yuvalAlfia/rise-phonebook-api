@@ -1,6 +1,6 @@
 from fastapi import HTTPException
 from sqlalchemy.exc import SQLAlchemyError
-from app.core.metrics import PrometheusMiddleware, metrics_endpoint, metrics_json
+from app.core.metrics import PrometheusMiddleware, metrics_json
 from fastapi import FastAPI
 from app.api import api_router
 from app.core.events import on_startup
@@ -20,10 +20,6 @@ app.add_exception_handler(SQLAlchemyError, sqlalchemy_exception_handler)
 app.add_exception_handler(Exception, general_exception_handler)
 
 app.add_event_handler("startup", on_startup)
-
-@app.get("/metrics")
-def metrics():
-    return metrics_endpoint()
 
 @app.get("/metrics/json")
 def metrics_json_endpoint():

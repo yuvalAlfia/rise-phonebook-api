@@ -1,8 +1,10 @@
 import logging
 from app.core.config import Logs
+from app.core.config import settings
 
 
-def get_logger(name: str, logger_level: str = "DEBUG"):
+
+def get_logger(name: str, logger_level: str = settings.LOG_LEVEL):
     logger = logging.getLogger(name)
     logger.setLevel(Logs.LOG_LEVELS.get(logger_level))
     logger.propagate = False
@@ -11,7 +13,7 @@ def get_logger(name: str, logger_level: str = "DEBUG"):
         logger.addHandler(ch)
     return logger
 
-def config_handler(logger_level: str = "DEBUG"):
+def config_handler(logger_level: str = settings.LOG_LEVEL):
     ch = logging.StreamHandler()
     ch.setLevel(Logs.LOG_LEVELS.get(logger_level))
     formatter = logging.Formatter(Logs.LOG_FORMAT)

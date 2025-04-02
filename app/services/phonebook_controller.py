@@ -47,7 +47,7 @@ class PhonebookController:
         return None
 
     @staticmethod
-    async def list_contacts(db: AsyncSession, skip: int = 0, limit: int = 10) -> list[ContactOut]:
+    async def list_contacts(db: AsyncSession, skip: int = 0, limit: int = settings.PAGINATION_DEFAULT_PAGE) -> list[ContactOut]:
         logger.debug(f"[Controller] Listing contacts: skip={skip}, limit={limit}")
         try:
             key = f"contacts:list:{skip}:{limit}"
@@ -115,7 +115,7 @@ class PhonebookController:
             raise HTTPException(status_code=500, detail="Internal Server Error: Could not delete contact")
 
     @staticmethod
-    async def search_contacts(db: AsyncSession, query: str, skip: int = 0, limit: int = 10) -> list[ContactOut]:
+    async def search_contacts(db: AsyncSession, query: str, skip: int = 0, limit: int = settings.PAGINATION_DEFAULT_PAGE) -> list[ContactOut]:
         logger.debug(f"[Controller] Searching contacts: query='{query}', skip={skip}, limit={limit}")
         try:
             key = f"search:{query}:{skip}:{limit}"

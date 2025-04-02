@@ -3,10 +3,8 @@ from prometheus_client import (
     Histogram,
     Gauge,
     CollectorRegistry,
-    generate_latest,
-    CONTENT_TYPE_LATEST
 )
-from fastapi import Request, Response
+from fastapi import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 import time
 
@@ -57,8 +55,6 @@ class PrometheusMiddleware(BaseHTTPMiddleware):
         http_request_duration_seconds.labels(endpoint=endpoint).observe(duration)
         return response
 
-def metrics_endpoint():
-    return Response(generate_latest(custom_registry), media_type=CONTENT_TYPE_LATEST)
 
 def metrics_json():
     metrics_data = {}

@@ -12,22 +12,13 @@ class Settings(BaseSettings):
 
     CACHE_TTL: int = 3600
 
-    METRICS_PREFIX: str = "phonebook"
-
     LOG_LEVEL: str = "DEBUG"
     LOG_FORMAT: str = "%(asctime)s - %(name)s - %(levelname)s - %(message)s"
 
     PAGINATION_DEFAULT_PAGE: int = 10
-    PAGINATION_MAX_PAGE: int = 100
-
-    DEBUG: bool = False
 
 
 settings = Settings()
-
-
-class Messages:
-    NUM_CONTACTS = "num_contacts"
 
 
 class Logs:

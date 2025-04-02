@@ -11,7 +11,7 @@ logger = get_logger("phonebook_db", settings.LOG_LEVEL)
 class ContactsDBService:
 
     @staticmethod
-    async def get_contacts(db: AsyncSession, skip: int = 0, limit: int = 10):
+    async def get_contacts(db: AsyncSession, skip: int = 0, limit: int = settings.PAGINATION_DEFAULT_PAGE):
         try:
             logger.debug(f"[DB] Fetching contacts with skip={skip}, limit={limit}")
             result = await db.execute(select(Contact).offset(skip).limit(limit))
@@ -93,7 +93,7 @@ class ContactsDBService:
             raise
 
     @staticmethod
-    async def search_contacts(db: AsyncSession, query: str, skip: int = 0, limit: int = 10):
+    async def search_contacts(db: AsyncSession, query: str, skip: int = 0, limit: int = settings.PAGINATION_DEFAULT_PAGE):
         try:
             logger.debug(f"[DB] Searching contacts with query='{query}', skip={skip}, limit={limit}")
             stmt = (
