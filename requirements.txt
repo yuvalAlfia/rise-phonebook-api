@@ -1,0 +1,13 @@
+
+fastapi~=0.115.12
+uvicorn[standard]
+sqlalchemy~=2.0.40
+asyncpg
+psycopg2-binary
+pydantic~=2.11.1
+prometheus_client~=0.21.1
+redis~=5.2.1
+pydantic-settings~=2.8.1
+starlette~=0.46.1
+pytest~=8.3.5
+requests~=2.32.3
